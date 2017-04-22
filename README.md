@@ -1,2 +1,10 @@
 # Javascript
-js的学习笔记
+
+### Javascript 语法
+
+* 
+* 数组 
+
+* 
+
+### javascript 
