@@ -105,12 +105,48 @@ cat.speak.call(dog,'Speak')
 
 ### 闭包
 
-闭包，我认为就是一种打破全局变量和局部变量的一种方法
+闭包，我认为就是一种打破全局变量和局部变量的一种方法。
 
+```javascript
+//全局变量
+var n = 10;
+function foo(){
+	console.log(n);
+}
+foo() //10  局部变量可以查看全露变量
 
+//局部变量
+function foo(){
+	var n = 10;
+}
+foo() 
+console.log(n);//n is not defined
 
+//注意  函数里面定义n 要用var  如果不用var 其实定义的是全局变量所以能查到n
+function foo(){
+	n = 10;
+}
+foo() 
+console.log(n);//n is not defined
 
+//我们如何能够在全局变量里面访问到局部的变量呢
+function foo(){
+	var n=100;
+	function  bar(){
+		console.log(n);
+	}
+	return bar;
+}
+var resule=foo();
+resule();//100 
 
+```
+在 最后一个例子中，我们在 函数foo（局部变量） 中定义了一个函bar（又一个嵌套的局部变量），这个bar是相对于foo的局部变量，bar可以看到foo的所有变量，然后在foo函数中直接把bar这个函数返回出去，那么调用这个返回的函数，就可以在全局里面得到foo函数的变量
+
+这里需要一个知识点 `词法作用域`
+
+		什么是词法作用域，就是函数不管在哪里执行，他都拥有在代码编写时，词法所规定的作用域。就是你在中国出生，不管你在哪里生活，你都是中国人。
+		就如同闭包里面的 bar 他出生时的作用域是 foo 的子局部作用域。所以他可以看到foo里面的变量，那么把它return到全局里面的时候，他也是可以看到foo的变量。
 
 
 
